@@ -1,0 +1,23 @@
+{
+  "name": "try-bottender-console",
+  "version": "0.1.0",
+  "engines": {
+    "node": ">= 7.6.0"
+  },
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "bottender": "0.14.34"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.5",
+    "eslint": "^4.19.1",
+    "eslint-config-yoctol": "^0.17.1",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-prettier": "^2.6.1",
+    "eslint-plugin-react": "^7.9.1"
+  }
+}
