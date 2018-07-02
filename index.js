@@ -8,7 +8,7 @@ const bot = new LineBot({
 });
 
 bot.onEvent(async context => {
-  await context.sendText('Hello World Test');
+  await context.sendText('Hello World Test!');
 });
 
 const server = createServer(bot);
