@@ -1,5 +1,6 @@
 const { LineBot } = require('bottender');
 const { createServer } = require('bottender/express');
+const PORT = process.env.PORT || 5000;
 
 const bot = new LineBot({
   channelSecret: 'a37375a40e56d4db2b0b73a53f2c8353',
@@ -13,6 +14,4 @@ bot.onEvent(async context => {
 
 const server = createServer(bot);
 
-server.listen(5000, () => {
-  console.log('server is running on 5000 port...');
-});
+server.listen(PORT, () => console.log(`Listening on ${PORT}`));
