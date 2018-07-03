@@ -23,8 +23,8 @@ async function showCarousel(context) {
     {
       thumbnailImageUrl:
         'https://media3.giphy.com/media/3oFyDaTqy8773R71cs/giphy.gif',
-      title: '找GIF',
-      text: '隨便打個關鍵字',
+      title: '找個GIF',
+      text: '隨便打些關鍵字',
       actions: [
         {
           type: 'postback',
@@ -49,8 +49,8 @@ async function showCarousel(context) {
     {
       thumbnailImageUrl:
         'https://media3.giphy.com/media/3oFyDaTqy8773R71cs/giphy.gif',
-      title: '隨便啦',
-      text: '什麼GIF都可以',
+      title: '都可以啦',
+      text: '什麼GIF都好',
       actions: [
         {
           type: 'postback',

@@ -23,7 +23,7 @@ const random = () =>
     client
       .random('gifs', {})
       .then(response => {
-        const { fixed_width_small: picture } = response.data.images;
+        const { original: picture } = response.data.images;
         console.log(picture.gif_url);
         resolve(picture.gif_url);
       })
