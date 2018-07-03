@@ -32,11 +32,7 @@ const handler = new LineHandler()
     await context.replySticker('1', '1');
     await context.reply([
       Line.createText(`Hello ${context.state.nickname} !`),
-      Line.createImage(
-        'https://example.com/original.jpg',
-        'https://example.com/preview.jpg'
-      ),
-      Line.createText('Nothing'),
+      Line.createText('Nothing Happen'),
     ]);
   })
   .onEvent(async context => {
