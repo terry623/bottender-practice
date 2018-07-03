@@ -492,6 +492,10 @@ axios-error@^0.5.4:
   version "0.5.4"
   resolved "https://registry.yarnpkg.com/axios-error/-/axios-error-0.5.4.tgz#f86af6b09df20366c65748e2f0e0b27cf993f8ba"
 
+axios-error@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/axios-error/-/axios-error-0.7.0.tgz#0d433ceaaaa4fcbdf8a7208f828bd79781f2a3ea"
+
 axios@^0.17.0:
   version "0.17.1"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.17.1.tgz#2d8e3e5d0bdbd7327f91bc814f5c57660f81824d"
@@ -2837,6 +2841,14 @@ messaging-api-line@^0.6.13:
     axios-error "^0.5.4"
     image-type "^3.0.0"
     warning "^3.0.0"
+
+messaging-api-line@^0.7.3:
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/messaging-api-line/-/messaging-api-line-0.7.3.tgz#e4f16cf154bb3a1b0c197779fbeeb21724f32e50"
+  dependencies:
+    axios "^0.17.0"
+    axios-error "^0.7.0"
+    image-type "^3.0.0"
 
 messaging-api-messenger@^0.6.15:
   version "0.6.15"
