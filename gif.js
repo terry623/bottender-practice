@@ -11,7 +11,9 @@ function search(query) {
   client
     .search('gifs', option)
     .then(response => {
-      response.data.forEach(gifObject => console.log(gifObject.images));
+      response.data.forEach(gifObject => {
+        console.log(gifObject.images);
+      });
     })
     .catch(err => console.log(err));
 }
@@ -20,8 +22,9 @@ function random() {
   client
     .random('gifs', {})
     .then(response => {
-      console.log(response);
-      response.data.forEach(gifObject => console.log(gifObject.images));
+      const { images } = response.data.images;
+      const picture = images.original;
+      return picture.url;
     })
     .catch(err => console.log(err));
 }

@@ -30,9 +30,8 @@ bot.onEvent(async context => {
     await context.replySticker('1', '1');
   } else {
     await context.sendText(`What's up ? ${context.state.nickname} ?`);
-    gif.random();
-    // const picture = gif.random();
-    // await context.replyImage(picture, picture);
+    const url = gif.random();
+    await context.replyImage(url, url);
   }
 });
 
