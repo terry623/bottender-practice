@@ -23,8 +23,10 @@ function random() {
     .random('gifs', {})
     .then(response => {
       const { images } = response.data.images;
-      const picture = images.original;
-      return picture.url;
+      console.log('Print the images info');
+      console.log(images);
+      // const picture = images.original;
+      // return picture.url;
     })
     .catch(err => console.log(err));
 }
