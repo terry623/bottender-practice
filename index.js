@@ -1,4 +1,6 @@
-const { LineBot } = require('bottender');
+import { askNickname } from './helper';
+
+const { LineBot, LineHandler } = require('bottender');
 const { createServer } = require('bottender/express');
 const { Line } = require('messaging-api-line');
 
@@ -10,17 +12,32 @@ const bot = new LineBot({
     'BO14M3aCS0TSVMlegbNshvEf+0s64FktENYaQE830oQnIAZlydlO4JvKd+bRo4sc/5hZI84xRyeCaMPp459v3QXSMPN7Ahx8qvsWMBu89xEhURKhRRzO1b90LU+2GYyepv/9n5HSbGi9OluomjnWLgdB04t89/1O/w1cDnyilFU=',
 });
 
-bot.onEvent(async context => {
-  await context.replySticker('1', '1');
-  await context.reply([
-    Line.createText('Hello'),
-    Line.createImage(
-      'https://example.com/original.jpg',
-      'https://example.com/preview.jpg'
-    ),
-    Line.createText('End'),
-  ]);
+bot.setInitialState({
+  asking: false,
+  nickname: null,
 });
+
+const handler = new LineHandler()
+  .onText(/yo/i, async context => {
+    await askNickname(context);
+    await context.replySticker('1', '1');
+    await context.reply([
+      Line.createText(`Hello ${context.state.nickname} !`),
+      Line.createImage(
+        'https://example.com/original.jpg',
+        'https://example.com/preview.jpg'
+      ),
+      Line.createText('Nothing'),
+    ]);
+  })
+  .onEvent(async context => {
+    await context.sendText("I don't know what you say.");
+  })
+  .onError(async context => {
+    await context.sendText('Something wrong happened.');
+  });
+
+bot.onEvent(handler);
 
 const server = createServer(bot);
 
