@@ -2,7 +2,7 @@ const { LineBot } = require('bottender');
 const { createServer } = require('bottender/express');
 
 const PORT = process.env.PORT || 5000;
-const config = require('./config');
+const config = require('./bottender.config');
 const gif = require('./gif');
 
 const bot = new LineBot(config.line);
