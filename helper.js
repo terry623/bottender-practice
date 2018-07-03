@@ -13,9 +13,9 @@ async function askNickname(context) {
 async function sendRandomGIF(context, gif) {
   await context.sendText(`What's up ? ${context.state.nickname} ?`);
   await context.sendText(`Give you a special GIF`);
-  const url = await gif.random();
-  await context.replyImage(url, url);
-  await context.sendText(url);
+  const urls = await gif.random();
+  await context.replyImage(urls[0], urls[1]);
+  await context.sendText(urls[0]);
 }
 
 async function showCarousel(context) {

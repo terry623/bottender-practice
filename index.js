@@ -15,7 +15,6 @@ bot.setInitialState({
 
 const handler = new LineHandler()
   .onEvent(async context => {
-    console.log('hello');
     if (context.state.nickname === null) {
       await helper.askNickname(context);
     } else if (context.event.isText) {
