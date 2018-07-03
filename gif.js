@@ -1,6 +1,6 @@
 const GphApiClient = require('giphy-js-sdk-core');
 
-const client = GphApiClient('YOUR_API_KEY');
+const client = GphApiClient('WCyzh8Jtc3RNEOwPPELQy5QGhuHUGpwJ');
 
 function search(query) {
   const option = {
