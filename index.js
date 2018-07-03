@@ -1,6 +1,5 @@
 const { LineBot } = require('bottender');
 const { createServer } = require('bottender/express');
-// const { Line } = require('messaging-api-line');
 
 const PORT = process.env.PORT || 5000;
 const config = require('./config');

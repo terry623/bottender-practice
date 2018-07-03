@@ -29,6 +29,4 @@ const random = () =>
       .catch(err => console.log(err));
   });
 
-random();
-
 module.exports = { search, random };
