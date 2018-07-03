@@ -1,9 +1,10 @@
-const { LineBot } = require('bottender');
+const { LineBot, LineHandler } = require('bottender');
 const { createServer } = require('bottender/express');
 
 const PORT = process.env.PORT || 5000;
 const config = require('./bottender.config');
 const gif = require('./gif');
+const helper = require('./helper');
 
 const bot = new LineBot(config.line);
 
@@ -12,28 +13,20 @@ bot.setInitialState({
   nickname: null,
 });
 
-async function askNickname(context) {
-  if (context.state.asking) {
-    context.setState({ nickname: context.event.text, asking: false });
-    await context.sendText(`Hello ${context.state.nickname} !`);
-  } else {
-    context.resetState();
-    context.setState({ asking: true });
-    await context.sendText("Hi, what's your nickname?");
-    await context.replySticker('1', '1');
-  }
-}
+const handler = new LineHandler()
+  .onEvent(async context => {
+    if (context.state.nickname === null) {
+      await helper.askNickname(context);
+    } else if (context.event.isText) {
+      await helper.sendRandomGIF(context, gif);
+      await helper.showCarousel(context);
+    }
+  })
+  .onError(async context => {
+    await context.sendText('Something wrong happened.');
+  });
 
-bot.onEvent(async context => {
-  if (context.state.nickname === null) {
-    await askNickname(context);
-  } else {
-    await context.sendText(`What's up ? ${context.state.nickname} ?`);
-    await context.sendText(`Give you a special GIF`);
-    const url = await gif.random();
-    await context.replyImage(url, url);
-  }
-});
+bot.onEvent(handler);
 
 const server = createServer(bot);
 
