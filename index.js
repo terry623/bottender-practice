@@ -15,16 +15,19 @@ bot.setInitialState({
   nickname: null,
 });
 
-async function askNickname(context) {
-  if (context.state.asking) {
-    context.setState({ nickname: context.event.text, asking: false });
-    await context.sendText(`Hello ${context.state.nickname}`);
-  } else {
-    context.resetState();
-    context.setState({ asking: true });
-    await context.sendText("Hi, what's your nickname?");
-  }
-}
+const askNickname = context =>
+  new Promise(resolve => {
+    if (context.state.asking) {
+      context.setState({ nickname: context.event.text, asking: false });
+      context.sendText(`Hello ${context.state.nickname}`);
+      resolve();
+    } else {
+      context.resetState();
+      context.setState({ asking: true });
+      context.sendText("Hi, what's your nickname?");
+      resolve();
+    }
+  });
 
 const handler = new LineHandler()
   .onText(/yo/i, async context => {
