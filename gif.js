@@ -2,21 +2,20 @@ const GphApiClient = require('giphy-js-sdk-core');
 
 const client = GphApiClient('WCyzh8Jtc3RNEOwPPELQy5QGhuHUGpwJ');
 
-function search(query) {
-  const option = {
-    q: query,
-    limit: 1,
-  };
+const search = query =>
+  new Promise(resolve => {
+    const option = {
+      q: query,
+      limit: 1,
+    };
 
-  client
-    .search('gifs', option)
-    .then(response => {
-      response.data.forEach(gifObject => {
-        console.log(gifObject.images);
-      });
-    })
-    .catch(err => console.log(err));
-}
+    client
+      .search('gifs', option)
+      .then(response => {
+        resolve(response.data);
+      })
+      .catch(err => console.log(err));
+  });
 
 const random = () =>
   new Promise(resolve => {

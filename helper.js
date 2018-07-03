@@ -11,6 +11,7 @@ function getUrlVars(url) {
   return values;
 }
 
+// TODO: move ask function
 async function askNickname(context) {
   if (context.state.asking) {
     context.setState({ nickname: context.event.text, asking: false });
@@ -23,6 +24,13 @@ async function askNickname(context) {
   }
 }
 
+async function askSearchString(context) {
+  await context.sendText('Hi, what do you want to search?');
+  // FIXME: ask not yet finish
+  return 'girl';
+}
+
+// TODO: move send function
 async function sendRandomGIF(context) {
   await context.sendText(`What's up ? ${context.state.nickname} ?`);
   await context.sendText(`Give you a special GIF`);
@@ -31,15 +39,24 @@ async function sendRandomGIF(context) {
   await context.sendText(urls[0]);
 }
 
+async function sendSpecialGIF(context) {
+  const query = await askSearchString(context);
+  const test = await gif.search(query);
+  console.log(test);
+  await context.sendText(
+    `Hey ${context.state.nickname} ! Give you a special GIF`
+  );
+}
+
 async function whatAction(context) {
   const { data } = context.event.postback;
   const { action } = getUrlVars(data);
   switch (action) {
     case 'search':
-      await context.sendText('search search search');
+      await sendSpecialGIF(context);
       break;
     case 'hot':
-      await context.sendText('hot hot hot');
+      await context.sendText('hot not yet finish');
       break;
     case 'random':
       await sendRandomGIF(context);
@@ -53,7 +70,7 @@ async function showCarousel(context) {
   context.replyCarouselTemplate('this is a carousel template', [
     {
       thumbnailImageUrl:
-        'https://media3.giphy.com/media/3oFyDaTqy8773R71cs/giphy.gif',
+        'https://media.giphy.com/media/3o7bu1jl4jMGgWDUhq/giphy.gif',
       title: '找個GIF',
       text: '隨便打些關鍵字',
       actions: [
@@ -66,7 +83,7 @@ async function showCarousel(context) {
     },
     {
       thumbnailImageUrl:
-        'https://media3.giphy.com/media/3oFyDaTqy8773R71cs/giphy.gif',
+        'https://media.giphy.com/media/5VKbvrjxpVJCM/giphy.gif',
       title: '熱門搜尋',
       text: '看看大家都找什麼',
       actions: [
@@ -79,7 +96,7 @@ async function showCarousel(context) {
     },
     {
       thumbnailImageUrl:
-        'https://media3.giphy.com/media/3oFyDaTqy8773R71cs/giphy.gif',
+        'https://media.giphy.com/media/57UCJutzbAWdUrVIyv/giphy.gif',
       title: '都可以啦',
       text: '什麼GIF都好',
       actions: [
