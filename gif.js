@@ -22,14 +22,12 @@ function random() {
   client
     .random('gifs', {})
     .then(response => {
-      console.log('Print the response info');
-      console.log(response);
-      // const { images } = response.data.images;
-      // console.log(images);
-      // const picture = images.original;
-      // return picture.url;
+      const { original } = response.data.images;
+      return original.gif_url;
     })
     .catch(err => console.log(err));
 }
+
+random();
 
 module.exports = { search, random };
