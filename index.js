@@ -21,17 +21,18 @@ async function askNickname(context) {
     context.resetState();
     context.setState({ asking: true });
     await context.sendText("Hi, what's your nickname?");
+    await context.replySticker('1', '1');
   }
 }
 
 bot.onEvent(async context => {
   if (context.state.nickname === null) {
     await askNickname(context);
-    await context.replySticker('1', '1');
   } else {
     await context.sendText(`What's up ? ${context.state.nickname} ?`);
+    await context.sendText(`Give you a special GIF`);
     const url = await gif.random();
-    await context.replyVideo(url, url);
+    await context.replyImage(url, url);
   }
 });
 
