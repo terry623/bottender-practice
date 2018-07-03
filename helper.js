@@ -15,6 +15,7 @@ async function sendRandomGIF(context, gif) {
   await context.sendText(`Give you a special GIF`);
   const url = await gif.random();
   await context.replyImage(url, url);
+  await context.sendText(url);
 }
 
 async function showCarousel(context) {

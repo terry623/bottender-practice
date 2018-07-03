@@ -24,6 +24,7 @@ const random = () =>
       .random('gifs', {})
       .then(response => {
         const { original } = response.data.images;
+        console.log(original.gif_url);
         resolve(original.gif_url);
       })
       .catch(err => console.log(err));
