@@ -22,9 +22,10 @@ function random() {
   client
     .random('gifs', {})
     .then(response => {
-      const { images } = response.data.images;
-      console.log('Print the images info');
-      console.log(images);
+      console.log('Print the response info');
+      console.log(response);
+      // const { images } = response.data.images;
+      // console.log(images);
       // const picture = images.original;
       // return picture.url;
     })
