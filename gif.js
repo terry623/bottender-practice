@@ -24,9 +24,11 @@ const random = () =>
       .random('gifs', {})
       .then(response => {
         const { original } = response.data.images;
-        resolve(original.gif_url);
+        resolve(original.mp4);
       })
       .catch(err => console.log(err));
   });
+
+random();
 
 module.exports = { search, random };

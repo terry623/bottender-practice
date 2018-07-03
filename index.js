@@ -31,7 +31,7 @@ bot.onEvent(async context => {
   } else {
     await context.sendText(`What's up ? ${context.state.nickname} ?`);
     const url = await gif.random();
-    await context.replyImage(url, url);
+    await context.replyVideo(url, url);
   }
 });
 
