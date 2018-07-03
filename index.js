@@ -1,5 +1,7 @@
 const { LineBot } = require('bottender');
 const { createServer } = require('bottender/express');
+const { Line } = require('messaging-api-line');
+
 const PORT = process.env.PORT || 5000;
 
 const bot = new LineBot({
@@ -9,7 +11,15 @@ const bot = new LineBot({
 });
 
 bot.onEvent(async context => {
-  await context.sendText('Hello World');
+  await context.reply([
+    Line.createText('Hello'),
+    Line.createImage(
+      'https://example.com/original.jpg',
+      'https://example.com/preview.jpg'
+    ),
+    Line.createText('End'),
+  ]);
+  await context.replySticker('1', '1');
 });
 
 const server = createServer(bot);

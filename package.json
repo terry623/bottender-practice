@@ -9,7 +9,8 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "bottender": "0.14.34"
+    "bottender": "0.14.34",
+    "messaging-api-line": "^0.7.3"
   },
   "devDependencies": {
     "nodemon": "^1.17.5",
