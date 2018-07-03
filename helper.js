@@ -23,46 +23,39 @@ async function showCarousel(context) {
     {
       thumbnailImageUrl:
         'https://media3.giphy.com/media/3oFyDaTqy8773R71cs/giphy.gif',
-      title: 'this is menu',
-      text: 'description',
+      title: '找GIF',
+      text: '隨便打個關鍵字',
       actions: [
         {
           type: 'postback',
-          label: 'Buy',
-          data: 'action=buy&itemid=111',
-        },
-        {
-          type: 'postback',
-          label: 'Add to cart',
-          data: 'action=add&itemid=111',
-        },
-        {
-          type: 'uri',
-          label: 'View detail',
-          uri: 'http://example.com/page/111',
+          label: 'Go',
+          data: 'action=search',
         },
       ],
     },
     {
       thumbnailImageUrl:
-        'https://media3.giphy.com/media/xThtadhNmxBdhfB3iM/giphy.gif',
-      title: 'this is menu 2',
-      text: 'description',
+        'https://media3.giphy.com/media/3oFyDaTqy8773R71cs/giphy.gif',
+      title: '熱門搜尋',
+      text: '看看大家都找什麼',
       actions: [
         {
           type: 'postback',
-          label: 'Buy',
-          data: 'action=buy&itemid=222',
+          label: 'Go',
+          data: 'action=hot',
         },
+      ],
+    },
+    {
+      thumbnailImageUrl:
+        'https://media3.giphy.com/media/3oFyDaTqy8773R71cs/giphy.gif',
+      title: '隨便啦',
+      text: '什麼GIF都可以',
+      actions: [
         {
           type: 'postback',
-          label: 'Add to cart',
-          data: 'action=add&itemid=222',
-        },
-        {
-          type: 'uri',
-          label: 'View detail',
-          uri: 'http://example.com/page/222',
+          label: 'Go',
+          data: 'action=random',
         },
       ],
     },

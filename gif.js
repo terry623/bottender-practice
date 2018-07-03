@@ -23,11 +23,13 @@ const random = () =>
     client
       .random('gifs', {})
       .then(response => {
-        const { original } = response.data.images;
-        console.log(original.gif_url);
-        resolve(original.gif_url);
+        const { fixed_width_small: picture } = response.data.images;
+        console.log(picture.gif_url);
+        resolve(picture.gif_url);
       })
       .catch(err => console.log(err));
   });
+
+random();
 
 module.exports = { search, random };
