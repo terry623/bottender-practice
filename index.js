@@ -27,11 +27,12 @@ async function askNickname(context) {
 bot.onEvent(async context => {
   if (context.state.nickname === null) {
     await askNickname(context);
-    await context.replySticker('151', '2');
+    await context.replySticker('1', '1');
   } else {
     await context.sendText(`What's up ? ${context.state.nickname} ?`);
-    const picture = await gif.random();
-    await context.replyImage(picture, picture);
+    gif.random();
+    // const picture = gif.random();
+    // await context.replyImage(picture, picture);
   }
 });
 
