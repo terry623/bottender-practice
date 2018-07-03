@@ -41,11 +41,10 @@ async function sendRandomGIF(context) {
 
 async function sendSpecialGIF(context) {
   const query = await askSearchString(context);
-  const test = await gif.search(query);
-  console.log(test);
-  await context.sendText(
-    `Hey ${context.state.nickname} ! Give you a special GIF`
-  );
+  await context.sendText(`Search for ${query}.`);
+  const urls = await gif.search(query);
+  await context.replyImage(urls[0], urls[1]);
+  await context.sendText(urls[0]);
 }
 
 async function whatAction(context) {

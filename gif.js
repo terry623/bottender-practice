@@ -12,7 +12,11 @@ const search = query =>
     client
       .search('gifs', option)
       .then(response => {
-        resolve(response.data);
+        const {
+          original: origin,
+          fixed_width_small: preview,
+        } = response.data[0].images;
+        resolve([origin.gif_url, preview.gif_url]);
       })
       .catch(err => console.log(err));
   });
