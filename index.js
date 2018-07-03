@@ -18,8 +18,10 @@ const handler = new LineHandler()
     if (context.state.nickname === null) {
       await helper.askNickname(context);
     } else if (context.event.isText) {
-      await helper.sendRandomGIF(context, gif);
-      await helper.showCarousel(context);
+      const { text } = context.event.message;
+      if (/^random/i.test(text)) await helper.sendRandomGIF(context, gif);
+      else if (/^show/i.test(text)) await helper.showCarousel(context);
+      else context.sendText(`I don't understand.`);
     }
   })
   .onError(async context => {
