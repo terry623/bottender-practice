@@ -1,4 +1,4 @@
-const { LineBot, LineHandler } = require('bottender');
+const { LineBot } = require('bottender');
 const { createServer } = require('bottender/express');
 // const { Line } = require('messaging-api-line');
 
@@ -29,19 +29,10 @@ const askNickname = context =>
     }
   });
 
-const handler = new LineHandler()
-  .onText(/yo/i, async context => {
-    await askNickname(context);
-    await context.replySticker('1', '1');
-  })
-  .onEvent(async context => {
-    await context.sendText("I don't know what you say.");
-  })
-  .onError(async context => {
-    await context.sendText('Something wrong happened.');
-  });
-
-bot.onEvent(handler);
+bot.onEvent(async context => {
+  await askNickname(context);
+  await context.replySticker('1', '1');
+});
 
 const server = createServer(bot);
 
