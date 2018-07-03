@@ -1,7 +1,7 @@
 module.exports = {
   line: {
-    channelSecret: 'a37375a40e56d4db2b0b73a53f2c8353',
+    channelSecret: 'cb7625e7a05928025941dbbca9392e02',
     accessToken:
-      'BO14M3aCS0TSVMlegbNshvEf+0s64FktENYaQE830oQnIAZlydlO4JvKd+bRo4sc/5hZI84xRyeCaMPp459v3QXSMPN7Ahx8qvsWMBu89xEhURKhRRzO1b90LU+2GYyepv/9n5HSbGi9OluomjnWLgdB04t89/1O/w1cDnyilFU=',
+      'HWvF0KQenKZuP3BZ4FSAFCJTpYYDEiD5kz3pmavfOoUrhSYuOThJgrHC3TPAj7bwzSJuR8uA9Ht7g/oWB/OtCeneYA0RLDrAC4YNAwrVqI/+ryEdZ1P/fzTqZ1BDXEsEx50Fn4kqpBy44lal/zZuxAdB04t89/1O/w1cDnyilFU=',
   },
 };
