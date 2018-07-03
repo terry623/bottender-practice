@@ -18,16 +18,15 @@ function search(query) {
     .catch(err => console.log(err));
 }
 
-function random() {
-  client
-    .random('gifs', {})
-    .then(response => {
-      const { original } = response.data.images;
-      return original.gif_url;
-    })
-    .catch(err => console.log(err));
-}
-
-random();
+const random = () =>
+  new Promise(resolve => {
+    client
+      .random('gifs', {})
+      .then(response => {
+        const { original } = response.data.images;
+        resolve(original.gif_url);
+      })
+      .catch(err => console.log(err));
+  });
 
 module.exports = { search, random };

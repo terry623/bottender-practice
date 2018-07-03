@@ -30,7 +30,7 @@ bot.onEvent(async context => {
     await context.replySticker('1', '1');
   } else {
     await context.sendText(`What's up ? ${context.state.nickname} ?`);
-    const url = gif.random();
+    const url = await gif.random();
     await context.replyImage(url, url);
   }
 });
