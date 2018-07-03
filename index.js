@@ -1,6 +1,6 @@
 const { LineBot, LineHandler } = require('bottender');
 const { createServer } = require('bottender/express');
-const { Line } = require('messaging-api-line');
+// const { Line } = require('messaging-api-line');
 
 const PORT = process.env.PORT || 5000;
 
@@ -33,10 +33,6 @@ const handler = new LineHandler()
   .onText(/yo/i, async context => {
     await askNickname(context);
     await context.replySticker('1', '1');
-    await context.reply([
-      Line.createText(`Hello ${context.state.nickname} !`),
-      Line.createText('Nothing Happen'),
-    ]);
   })
   .onEvent(async context => {
     await context.sendText("I don't know what you say.");
