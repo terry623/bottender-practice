@@ -45,7 +45,7 @@ async function showCarousel(context) {
     {
       thumbnailImageUrl:
         'https://media3.giphy.com/media/xThtadhNmxBdhfB3iM/giphy.gif',
-      title: 'this is menu',
+      title: 'this is menu 2',
       text: 'description',
       actions: [
         {
