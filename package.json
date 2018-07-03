@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "bottender": "0.14.34",
+    "giphy-js-sdk-core": "^1.0.3",
     "messaging-api-line": "^0.7.3"
   },
   "devDependencies": {
