@@ -11,6 +11,7 @@ const bot = new LineBot({
 });
 
 bot.onEvent(async context => {
+  await context.replySticker('1', '1');
   await context.reply([
     Line.createText('Hello'),
     Line.createImage(
@@ -19,7 +20,6 @@ bot.onEvent(async context => {
     ),
     Line.createText('End'),
   ]);
-  await context.replySticker('1', '1');
 });
 
 const server = createServer(bot);
