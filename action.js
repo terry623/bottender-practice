@@ -64,6 +64,8 @@ async function showCarousel(context) {
 async function whatType(context) {
   const { data } = context.event.postback;
   const { action } = getUrlVars(data);
+  context.setState({ keyword: null, askingKeyword: false });
+
   switch (action) {
     case 'search':
       await send.specialGIF(context);
