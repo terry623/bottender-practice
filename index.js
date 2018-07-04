@@ -5,6 +5,7 @@ const PORT = process.env.PORT || 5000;
 const config = require('./bottender.config');
 const action = require('./action');
 const send = require('./send');
+const ask = require('./ask');
 
 const bot = new LineBot(config.line);
 
@@ -18,7 +19,7 @@ bot.setInitialState({
 // FIXME: remove lots of ifelse
 const handler = new LineHandler().onEvent(async context => {
   if (context.state.nickname === null) {
-    await send.askNickname(context);
+    await ask.nickname(context);
   } else if (context.state.askingSearchString === true) {
     await send.specialGIF(context);
   } else if (context.event.isPostback) {

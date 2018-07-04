@@ -11,24 +11,6 @@ function getUrlVars(url) {
   return values;
 }
 
-async function whatType(context) {
-  const { data } = context.event.postback;
-  const { action } = getUrlVars(data);
-  switch (action) {
-    case 'search':
-      await send.specialGIF(context);
-      break;
-    case 'hot':
-      await context.sendText('hot not yet finish');
-      break;
-    case 'random':
-      await send.randomGIF(context);
-      break;
-    default:
-      await context.sendText(`It is not a valid command.`);
-  }
-}
-
 async function showCarousel(context) {
   context.replyCarouselTemplate('this is a carousel template', [
     {
@@ -71,6 +53,24 @@ async function showCarousel(context) {
       ],
     },
   ]);
+}
+
+async function whatType(context) {
+  const { data } = context.event.postback;
+  const { action } = getUrlVars(data);
+  switch (action) {
+    case 'search':
+      await send.specialGIF(context);
+      break;
+    case 'hot':
+      await context.sendText('hot not yet finish');
+      break;
+    case 'random':
+      await send.randomGIF(context);
+      break;
+    default:
+      await context.sendText(`It is not a valid command.`);
+  }
 }
 
 module.exports = { showCarousel, whatType };
