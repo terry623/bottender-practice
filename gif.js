@@ -3,7 +3,7 @@ const GphApiClient = require('giphy-js-sdk-core');
 const client = GphApiClient('WCyzh8Jtc3RNEOwPPELQy5QGhuHUGpwJ');
 
 const search = query =>
-  new Promise(resolve => {
+  new Promise((resolve, reject) => {
     const photoLimit = 20;
     const option = {
       q: query,
@@ -20,7 +20,7 @@ const search = query =>
 
         resolve([origin.gif_url, preview.gif_url]);
       })
-      .catch(err => console.log(err));
+      .catch(err => reject(err));
   });
 
 const random = () =>
