@@ -9,6 +9,7 @@ async function randomGIF(context) {
 }
 
 async function specialGIF(context) {
+  console.log(context.state);
   const query = await ask.searchString(context);
   console.log('query:', query);
   if (query !== null) {
