@@ -18,6 +18,8 @@ function insertSearchHistory(data) {
   MongoClient.connect(
     uri,
     (err, client) => {
+      console.log(uri);
+      console.log(client);
       const collection = client.db('test').collection('devices');
       insertDocument(data, collection, () => {
         collection.find({}).toArray((err2, docs) => {
