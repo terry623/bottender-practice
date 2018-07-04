@@ -3,23 +3,29 @@ const { createServer } = require('bottender/express');
 
 const PORT = process.env.PORT || 5000;
 const config = require('./bottender.config');
-const helper = require('./helper');
+const ask = require('./ask');
+const action = require('./action');
+const send = require('./send');
 
 const bot = new LineBot(config.line);
 
 bot.setInitialState({
   asking: false,
   nickname: null,
+  askingSearchString: false,
 });
 
+// FIXME: remove lots of ifelse
 const handler = new LineHandler()
   .onEvent(async context => {
     if (context.state.nickname === null) {
-      await helper.askNickname(context);
+      await ask.nickname(context);
     } else if (context.event.isPostback) {
-      await helper.whatAction(context);
+      await action.whatType(context);
+    } else if (context.state.askingSearchString === true) {
+      await send.specialGIF(context);
     } else {
-      await helper.showCarousel(context);
+      await action.showCarousel(context);
     }
   })
   .onError(async context => {

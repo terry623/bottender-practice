@@ -1,4 +1,4 @@
-const gif = require('./gif');
+const send = require('./send');
 
 function getUrlVars(url) {
   const values = {};
@@ -11,54 +11,18 @@ function getUrlVars(url) {
   return values;
 }
 
-// TODO: move ask function
-async function askNickname(context) {
-  if (context.state.asking) {
-    context.setState({ nickname: context.event.text, asking: false });
-    await context.sendText(`Hello ${context.state.nickname} !`);
-  } else {
-    context.resetState();
-    context.setState({ asking: true });
-    await context.sendText("Hi, what's your nickname?");
-    await context.replySticker('1', '1');
-  }
-}
-
-async function askSearchString(context) {
-  await context.sendText('Hi, what do you want to search?');
-  // FIXME: ask not yet finish
-  return 'girl';
-}
-
-// TODO: move send function
-async function sendRandomGIF(context) {
-  await context.sendText(`What's up ? ${context.state.nickname} ?`);
-  await context.sendText(`Give you a special GIF`);
-  const urls = await gif.random();
-  await context.replyImage(urls[0], urls[1]);
-  await context.sendText(urls[0]);
-}
-
-async function sendSpecialGIF(context) {
-  const query = await askSearchString(context);
-  await context.sendText(`Search for ${query}.`);
-  const urls = await gif.search(query);
-  await context.replyImage(urls[0], urls[1]);
-  await context.sendText(urls[0]);
-}
-
-async function whatAction(context) {
+async function whatType(context) {
   const { data } = context.event.postback;
   const { action } = getUrlVars(data);
   switch (action) {
     case 'search':
-      await sendSpecialGIF(context);
+      await send.specialGIF(context);
       break;
     case 'hot':
       await context.sendText('hot not yet finish');
       break;
     case 'random':
-      await sendRandomGIF(context);
+      await send.randomGIF(context);
       break;
     default:
       await context.sendText(`It is not a valid command.`);
@@ -109,4 +73,4 @@ async function showCarousel(context) {
   ]);
 }
 
-module.exports = { askNickname, sendRandomGIF, showCarousel, whatAction };
+module.exports = { showCarousel, whatType };

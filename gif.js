@@ -6,12 +6,13 @@ const search = query =>
   new Promise(resolve => {
     const option = {
       q: query,
-      limit: 1,
+      limit: 20,
     };
 
     client
       .search('gifs', option)
       .then(response => {
+        // TODO: random choose one
         const {
           original: origin,
           fixed_width_small: preview,
