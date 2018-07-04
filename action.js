@@ -1,4 +1,5 @@
 const send = require('./send');
+const db = require('./connectDB');
 
 function getUrlVars(url) {
   const values = {};
@@ -67,7 +68,7 @@ async function whatType(context) {
       await send.specialGIF(context);
       break;
     case 'hot':
-      await context.sendText('hot not yet finish');
+      await db.showAllSearch();
       break;
     case 'random':
       await send.randomGIF(context);
