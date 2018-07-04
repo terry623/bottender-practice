@@ -11,6 +11,13 @@ function getUrlVars(url) {
   return values;
 }
 
+async function showMenu(context) {
+  await context.sendText(`
+    /start   show menu
+    /exit    byebye
+  `);
+}
+
 async function showCarousel(context) {
   context.replyCarouselTemplate('this is a carousel template', [
     {
@@ -73,4 +80,4 @@ async function whatType(context) {
   }
 }
 
-module.exports = { showCarousel, whatType };
+module.exports = { showMenu, showCarousel, whatType };

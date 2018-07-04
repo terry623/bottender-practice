@@ -2,9 +2,6 @@ const gif = require('./gif');
 const ask = require('./ask');
 
 async function specialGIF(context) {
-  console.log('in send');
-  console.log(context.state);
-
   await ask.keyword(context);
   if (context.state.searchString !== null) {
     await context.sendText(`Search for ${context.state.searchString}.`);

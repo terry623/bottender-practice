@@ -1,7 +1,4 @@
 async function keyword(context) {
-  console.log('in ask');
-  console.log(context.state);
-
   if (context.state.askingSearchString) {
     context.setState({
       searchString: context.event.text,
