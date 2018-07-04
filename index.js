@@ -25,7 +25,7 @@ const handler = new LineHandler().onEvent(async context => {
   } else if (context.event.isPostback) {
     await action.whatType(context);
   } else {
-    await context.sendText(`I don't understand.`);
+    await action.showCarousel(context);
   }
 });
 // .onError(async context => {

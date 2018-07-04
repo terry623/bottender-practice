@@ -1,5 +1,3 @@
-const action = require('./action');
-
 async function keyword(context) {
   console.log('in ask');
   console.log(context.state);
@@ -19,7 +17,6 @@ async function nickname(context) {
   if (context.state.asking) {
     context.setState({ nickname: context.event.text, asking: false });
     await context.sendText(`Hello ${context.state.nickname} !`);
-    await action.showCarousel(context);
   } else {
     context.resetState();
     context.setState({ asking: true });
