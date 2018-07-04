@@ -6,7 +6,9 @@ async function keyword(context) {
     });
   } else {
     context.setState({ searchString: null, askingSearchString: true });
-    await context.sendText('Hi, what do you want to search?');
+    await context.sendText(
+      `Hey ${context.state.nickname}, what do you want to search?`
+    );
   }
 }
 
@@ -17,7 +19,7 @@ async function nickname(context) {
   } else {
     context.resetState();
     context.setState({ asking: true });
-    await context.sendText("Hi, what's your nickname?");
+    await context.sendText("Hey, what's your nickname?");
   }
 }
 

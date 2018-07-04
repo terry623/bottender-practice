@@ -13,8 +13,8 @@ function getUrlVars(url) {
 
 async function showMenu(context) {
   await context.sendText(`
-    /start   show menu
-    /exit    byebye
+/start   show menu
+/exit    byebye
   `);
 }
 
@@ -48,7 +48,7 @@ async function showCarousel(context) {
     },
     {
       thumbnailImageUrl:
-        'https://media.giphy.com/media/57UCJutzbAWdUrVIyv/giphy.gif',
+        'https://media.giphy.com/media/Wn3JwcYYSMn5e/giphy.gif',
       title: '都可以啦',
       text: '什麼GIF都好',
       actions: [

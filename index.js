@@ -24,10 +24,8 @@ const handler = new LineHandler().onEvent(async context => {
     if (asking) await action.showMenu(context);
   } else if (context.state.askingSearchString === true) {
     await send.specialGIF(context);
-    await action.showMenu(context);
   } else if (context.event.isPostback) {
     await action.whatType(context);
-    await action.showMenu(context);
   } else if (context.event.isText) {
     const { text } = context.event.message;
     if (/^start/i.test(text)) await action.showCarousel(context);

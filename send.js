@@ -11,8 +11,9 @@ async function specialGIF(context) {
 }
 
 async function randomGIF(context) {
-  await context.sendText(`What's up ? ${context.state.nickname} ?`);
-  await context.sendText(`Give you a special GIF`);
+  await context.sendText(
+    `Hey ${context.state.nickname}, give you a special GIF !`
+  );
   const urls = await gif.random();
   await context.replyImage(urls[0], urls[1]);
 }
