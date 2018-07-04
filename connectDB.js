@@ -33,8 +33,12 @@ async function showAllSearch(context) {
     (err, client) => {
       const collection = client.db('test').collection(table);
       collection.find({}).toArray(async (err2, docs) => {
-        const result = docsToString(docs);
-        await context.sendText(result);
+        if (!docs) {
+          const result = docsToString(docs);
+          await context.sendText(result);
+        } else {
+          await context.sendText('目前沒有資料 ><');
+        }
         client.close();
       });
     }

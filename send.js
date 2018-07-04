@@ -1,4 +1,5 @@
 const gif = require('./gif');
+const ask = require('./ask');
 const db = require('./connectDB');
 
 async function urlToReply(urls, context) {
@@ -7,6 +8,7 @@ async function urlToReply(urls, context) {
 }
 
 async function specialGIF(context) {
+  if (context.state.askingKeyword === true) await ask.keyword(context);
   if (context.state.keyword !== null) {
     db.insertSearchHistory(context);
     await context.sendText(`搜尋『${context.state.keyword}』`);
