@@ -8,6 +8,7 @@ async function urlToReply(urls, context) {
 }
 
 async function specialGIF(context) {
+  console.log(context.state);
   if (!context.state.askingKeyword) await ask.keyword(context);
   if (context.state.keyword !== null) {
     db.insertSearchHistory(context);
