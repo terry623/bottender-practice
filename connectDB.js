@@ -7,7 +7,12 @@ const uri = `mongodb+srv://${username}:${password}@cluster0-ypcvv.mongodb.net/te
 const table = `devices`;
 
 function docsToString(docs) {
-  return docs.toString();
+  let result = '';
+  docs.forEach(element => {
+    const { nickname, keyword } = element;
+    result += nickname.concat(' 搜尋了 ', keyword, '\n');
+  });
+  return result;
 }
 
 // TODO: 要做 error handling
