@@ -13,15 +13,18 @@ async function nickname(context) {
 }
 
 async function searchString(context) {
-  let query = null;
+  console.log('in ask');
+  console.log(context.state);
+
   if (context.state.askingSearchString) {
-    context.setState({ askingSearchString: false });
-    query = context.event.text;
+    context.setState({
+      searchString: context.event.text,
+      askingSearchString: false,
+    });
   } else {
-    context.setState({ askingSearchString: true });
+    context.setState({ searchString: null, askingSearchString: true });
     await context.sendText('Hi, what do you want to search?');
   }
-  return query;
 }
 
 module.exports = { nickname, searchString };

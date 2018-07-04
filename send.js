@@ -9,12 +9,13 @@ async function randomGIF(context) {
 }
 
 async function specialGIF(context) {
+  console.log('in send');
   console.log(context.state);
-  const query = await ask.searchString(context);
-  console.log('query:', query);
-  if (query !== null) {
-    await context.sendText(`Search for ${query}.`);
-    const urls = await gif.search(query);
+
+  await ask.searchString(context);
+  if (context.state.searchString !== null) {
+    await context.sendText(`Search for ${context.state.searchString}.`);
+    const urls = await gif.search(context.state.searchString);
     await context.replyImage(urls[0], urls[1]);
   }
 }

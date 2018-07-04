@@ -13,6 +13,7 @@ bot.setInitialState({
   asking: false,
   nickname: null,
   askingSearchString: false,
+  searchString: null,
 });
 
 // FIXME: remove lots of ifelse
