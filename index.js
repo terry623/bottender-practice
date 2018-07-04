@@ -32,8 +32,7 @@ async function handleCommend(context) {
 const handler = new LineHandler()
   .onEvent(async context => {
     if (context.state.nickname === null) await handleNickname(context);
-    else if (context.state.askingKeyword === true)
-      await send.specialGIF(context);
+    else if (context.state.askingKeyword) await send.specialGIF(context);
     else if (context.event.isPostback) await action.whatType(context);
     else if (context.event.isText) handleCommend(context);
   })
