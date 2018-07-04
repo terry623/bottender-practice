@@ -11,7 +11,7 @@ async function specialGIF(context) {
   await ask.keyword(context);
   if (context.state.keyword !== null) {
     db.insertSearchHistory(context);
-    await context.sendText(`Search for ${context.state.keyword}.`);
+    await context.sendText(`搜尋 ${context.state.keyword}`);
     const urls = await gif.search(context.state.keyword);
     await urlToReply(urls, context);
   }
@@ -19,7 +19,7 @@ async function specialGIF(context) {
 
 async function randomGIF(context) {
   await context.sendText(
-    `Hey ${context.state.nickname}, give you a special GIF !`
+    `Hey ${context.state.nickname}, 我隨便挑了個 GIF 給你 !`
   );
   const urls = await gif.random();
   await urlToReply(urls, context);

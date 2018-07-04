@@ -26,10 +26,7 @@ async function handleNickname(context) {
 async function handleCommend(context) {
   const { text } = context.event.message;
   if (/^start/i.test(text)) await action.showCarousel(context);
-  else {
-    await context.sendText(`I don't understand this commend.`);
-    await action.showMenu(context);
-  }
+  else await send.specialGIF(context);
 }
 
 const handler = new LineHandler()
@@ -42,7 +39,7 @@ const handler = new LineHandler()
   })
   .onError(async (context, error) => {
     console.log(error);
-    await context.sendText('Something wrong happened.');
+    await context.sendText('Handler 發生錯誤');
   });
 
 bot.onEvent(handler);

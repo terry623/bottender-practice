@@ -75,7 +75,7 @@ async function whatType(context) {
       await send.randomGIF(context);
       break;
     default:
-      await context.sendText(`It is not a valid command.`);
+      await context.sendText(`Postback 發生錯誤`);
   }
 }
 

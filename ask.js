@@ -6,9 +6,7 @@ async function keyword(context) {
     });
   } else {
     context.setState({ keyword: null, askingKeyword: true });
-    await context.sendText(
-      `Hey ${context.state.nickname}, what do you want to search?`
-    );
+    await context.sendText(`Hey ${context.state.nickname}, 你想搜尋什麼 GIF ?`);
   }
 }
 
@@ -19,7 +17,7 @@ async function nickname(context) {
   } else {
     context.resetState();
     context.setState({ askingNickname: true });
-    await context.sendText("Hey, what's your nickname?");
+    await context.sendText('Hey, 該怎麼叫你呢 ?');
   }
 }
 

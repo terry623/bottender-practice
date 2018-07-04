@@ -6,6 +6,10 @@ const uri = `mongodb+srv://${username}:${password}@cluster0-ypcvv.mongodb.net/te
 // FIXME: need to change collection name
 const table = `devices`;
 
+function docsToString(docs) {
+  return docs.toString();
+}
+
 // TODO: 要做 error handling
 function insertSearchHistory(context) {
   const { nickname, keyword } = context.state;
@@ -24,7 +28,8 @@ async function showAllSearch(context) {
     (err, client) => {
       const collection = client.db('test').collection(table);
       collection.find({}).toArray(async (err2, docs) => {
-        await context.sendText(docs);
+        const result = docsToString(docs);
+        await context.sendText(result);
         client.close();
       });
     }
