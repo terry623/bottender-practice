@@ -30,7 +30,10 @@ const handler = new LineHandler()
     } else if (context.event.isText) {
       const { text } = context.event.message;
       if (/^start/i.test(text)) await action.showCarousel(context);
-      else context.sendText(`I don't understand.`);
+      else {
+        await context.sendText(`I don't understand this commend.`);
+        await action.showMenu(context);
+      }
     }
   })
   .onError(async (context, error) => {

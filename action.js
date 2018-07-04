@@ -12,7 +12,7 @@ function getUrlVars(url) {
 }
 
 async function showMenu(context) {
-  await context.sendText(`輸入start，開啟選單`);
+  await context.sendText(`輸入 Start，開啟選單`);
 }
 
 async function showCarousel(context) {
