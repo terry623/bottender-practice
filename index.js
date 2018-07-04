@@ -25,7 +25,7 @@ const handler = new LineHandler()
     } else if (context.state.askingSearchString === true) {
       await send.specialGIF(context);
     } else {
-      await action.showCarousel(context);
+      await context.sendText(`I don't understand.`);
     }
   })
   .onError(async context => {

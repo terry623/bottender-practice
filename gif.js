@@ -13,7 +13,8 @@ const search = query =>
     client
       .search('gifs', option)
       .then(response => {
-        const chooseImage = Math.random() * photoLimit + 1;
+        const chooseImage = Math.floor(Math.random() * photoLimit);
+
         const { original: origin, fixed_width_small: preview } = response.data[
           chooseImage
         ].images;
