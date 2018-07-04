@@ -7,17 +7,15 @@ async function urlToReply(urls, context) {
   await context.replyImage(origin, preview);
 }
 
-async function searchGIF(context) {
-  db.insertSearchHistory(context);
-  await context.sendText(`搜尋『${context.state.keyword}』`);
-  const urls = await gif.search(context.state.keyword);
-  await urlToReply(urls, context);
-}
-
 async function specialGIF(context) {
   console.log(context.state);
-  if (context.state.keyword !== null) await searchGIF(context);
-  else await ask.keyword(context);
+  await ask.keyword(context);
+  if (context.state.keyword !== null) {
+    db.insertSearchHistory(context);
+    await context.sendText(`搜尋『${context.state.keyword}』`);
+    const urls = await gif.search(context.state.keyword);
+    await urlToReply(urls, context);
+  }
 }
 
 async function randomGIF(context) {
@@ -26,4 +24,4 @@ async function randomGIF(context) {
   await urlToReply(urls, context);
 }
 
-module.exports = { searchGIF, specialGIF, randomGIF };
+module.exports = { specialGIF, randomGIF };

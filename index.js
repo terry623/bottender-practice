@@ -26,7 +26,7 @@ async function handleCommend(context) {
   const { text } = context.event.message;
   if (/^start/i.test(text)) await action.showCarousel(context);
   else {
-    await context.setState({ keyword: context.event.text });
+    await context.setState({ askingKeyword: true });
     await send.specialGIF(context);
   }
 }
