@@ -16,25 +16,28 @@ bot.setInitialState({
   keyword: null,
 });
 
-// FIXME: 把 處理 state 的整理在一起
+async function handleNickname(context) {
+  const { askingNickname } = context.state;
+  await ask.nickname(context);
+  if (askingNickname) await action.showMenu(context);
+}
+
+async function handleCommend(context) {
+  const { text } = context.event.message;
+  if (/^start/i.test(text)) await action.showCarousel(context);
+  else {
+    await context.sendText(`I don't understand this commend.`);
+    await action.showMenu(context);
+  }
+}
+
 const handler = new LineHandler()
   .onEvent(async context => {
-    if (context.state.nickname === null) {
-      const { askingNickname } = context.state;
-      await ask.nickname(context);
-      if (askingNickname) await action.showMenu(context);
-    } else if (context.state.askingKeyword === true) {
+    if (context.state.nickname === null) await handleNickname(context);
+    else if (context.state.askingKeyword === true)
       await send.specialGIF(context);
-    } else if (context.event.isPostback) {
-      await action.whatType(context);
-    } else if (context.event.isText) {
-      const { text } = context.event.message;
-      if (/^start/i.test(text)) await action.showCarousel(context);
-      else {
-        await context.sendText(`I don't understand this commend.`);
-        await action.showMenu(context);
-      }
-    }
+    else if (context.event.isPostback) await action.whatType(context);
+    else if (context.event.isText) handleCommend(context);
   })
   .onError(async (context, error) => {
     console.log(error);
