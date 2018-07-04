@@ -4,7 +4,7 @@ const client = GphApiClient('WCyzh8Jtc3RNEOwPPELQy5QGhuHUGpwJ');
 
 const search = query =>
   new Promise(resolve => {
-    const photoLimit = 10;
+    const photoLimit = 5;
     const option = {
       q: query,
       limit: photoLimit,
@@ -18,6 +18,7 @@ const search = query =>
         const { original: origin, fixed_width_small: preview } = response.data[
           chooseImage
         ].images;
+
         resolve([origin.gif_url, preview.gif_url]);
       })
       .catch(err => console.log(err));
