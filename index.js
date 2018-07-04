@@ -17,24 +17,26 @@ bot.setInitialState({
 });
 
 // FIXME: remove lots of ifelse
-const handler = new LineHandler().onEvent(async context => {
-  if (context.state.nickname === null) {
-    const { asking } = context.state;
-    await ask.nickname(context);
-    if (asking) await action.showMenu(context);
-  } else if (context.state.askingSearchString === true) {
-    await send.specialGIF(context);
-  } else if (context.event.isPostback) {
-    await action.whatType(context);
-  } else if (context.event.isText) {
-    const { text } = context.event.message;
-    if (/^start/i.test(text)) await action.showCarousel(context);
-    else context.sendText(`I don't understand.`);
-  }
-});
-// .onError(async context => {
-//   await context.sendText('Something wrong happened.');
-// });
+const handler = new LineHandler()
+  .onEvent(async context => {
+    if (context.state.nickname === null) {
+      const { asking } = context.state;
+      await ask.nickname(context);
+      if (asking) await action.showMenu(context);
+    } else if (context.state.askingSearchString === true) {
+      await send.specialGIF(context);
+    } else if (context.event.isPostback) {
+      await action.whatType(context);
+    } else if (context.event.isText) {
+      const { text } = context.event.message;
+      if (/^start/i.test(text)) await action.showCarousel(context);
+      else context.sendText(`I don't understand.`);
+    }
+  })
+  .onError(async (context, error) => {
+    console.log(error);
+    await context.sendText('Something wrong happened.');
+  });
 
 bot.onEvent(handler);
 

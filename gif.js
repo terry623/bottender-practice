@@ -4,7 +4,7 @@ const client = GphApiClient('WCyzh8Jtc3RNEOwPPELQy5QGhuHUGpwJ');
 
 const search = query =>
   new Promise(resolve => {
-    const photoLimit = 5;
+    const photoLimit = 20;
     const option = {
       q: query,
       limit: photoLimit,
