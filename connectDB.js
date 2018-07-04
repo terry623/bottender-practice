@@ -8,9 +8,10 @@ const table = `temp2`;
 
 function docsToString(docs) {
   let result = '';
-  docs.forEach(element => {
+  docs.forEach((element, idx, arr) => {
     const { nickname, keyword } = element;
-    result += nickname.concat(' 搜尋了 ', keyword, '\n');
+    result += nickname.concat(' 搜尋了 ', keyword);
+    if (idx !== arr.length - 1) result += '\n';
   });
   return result;
 }
@@ -34,7 +35,7 @@ async function showAllSearch(context) {
       const collection = client.db('test').collection(table);
       collection.find({}).toArray(async (err2, docs) => {
         console.log(docs);
-        if (docs !== null) {
+        if (docs.length > 0) {
           const result = docsToString(docs);
           await context.sendText(result);
         } else {
