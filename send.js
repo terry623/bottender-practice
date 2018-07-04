@@ -13,8 +13,12 @@ async function specialGIF(context) {
   if (context.state.keyword !== null) {
     db.insertSearchHistory(context);
     await context.sendText(`搜尋『${context.state.keyword}』`);
-    const urls = await gif.search(context.state.keyword);
-    await urlToReply(urls, context);
+    try {
+      const urls = await gif.search(context.state.keyword);
+      await urlToReply(urls, context);
+    } catch (error) {
+      await context.sendText(`找不到相關的 GIF ><`);
+    }
   }
 }
 

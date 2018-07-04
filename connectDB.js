@@ -10,6 +10,7 @@ function docsToString(docs) {
   let result = '';
   docs.forEach((element, idx, arr) => {
     const { nickname, keyword } = element;
+    // FIXME: 人名 + 所有搜尋 = 一則訊息
     result += nickname.concat(' 搜尋了 ', keyword);
     if (idx !== arr.length - 1) result += '\n';
   });
