@@ -10,7 +10,7 @@ async function nickname(context) {
 }
 
 async function searchString(context) {
-  let query = 'girl';
+  let query = null;
   if (context.state.askingSearchString) {
     context.setState({ askingSearchString: false });
     query = context.event.text;

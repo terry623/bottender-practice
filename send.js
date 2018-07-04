@@ -10,9 +10,11 @@ async function randomGIF(context) {
 
 async function specialGIF(context) {
   const query = await ask.searchString(context);
-  await context.sendText(`Search for ${query}.`);
-  const urls = await gif.search(query);
-  await context.replyImage(urls[0], urls[1]);
+  if (query) {
+    await context.sendText(`Search for ${query}.`);
+    const urls = await gif.search(query);
+    await context.replyImage(urls[0], urls[1]);
+  }
 }
 
 module.exports = { randomGIF, specialGIF };

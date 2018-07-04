@@ -4,19 +4,19 @@ const client = GphApiClient('WCyzh8Jtc3RNEOwPPELQy5QGhuHUGpwJ');
 
 const search = query =>
   new Promise(resolve => {
+    const photoLimit = 10;
     const option = {
       q: query,
-      limit: 20,
+      limit: photoLimit,
     };
 
     client
       .search('gifs', option)
       .then(response => {
-        // TODO: random choose one
-        const {
-          original: origin,
-          fixed_width_small: preview,
-        } = response.data[0].images;
+        const chooseImage = Math.random() * photoLimit + 1;
+        const { original: origin, fixed_width_small: preview } = response.data[
+          chooseImage
+        ].images;
         resolve([origin.gif_url, preview.gif_url]);
       })
       .catch(err => console.log(err));
