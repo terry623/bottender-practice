@@ -10,20 +10,20 @@ const ask = require('./ask');
 const bot = new LineBot(config.line);
 
 bot.setInitialState({
-  asking: false,
+  askingNickname: false,
   nickname: null,
-  askingSearchString: false,
-  searchString: null,
+  askingKeyword: false,
+  keyword: null,
 });
 
-// FIXME: remove lots of ifelse
+// FIXME: 把 處理 state 的整理在一起
 const handler = new LineHandler()
   .onEvent(async context => {
     if (context.state.nickname === null) {
-      const { asking } = context.state;
+      const { askingNickname } = context.state;
       await ask.nickname(context);
-      if (asking) await action.showMenu(context);
-    } else if (context.state.askingSearchString === true) {
+      if (askingNickname) await action.showMenu(context);
+    } else if (context.state.askingKeyword === true) {
       await send.specialGIF(context);
     } else if (context.event.isPostback) {
       await action.whatType(context);

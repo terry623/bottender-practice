@@ -14,7 +14,6 @@ const search = query =>
       .search('gifs', option)
       .then(response => {
         const chooseImage = Math.floor(Math.random() * photoLimit);
-
         const { original: origin, fixed_width_small: preview } = response.data[
           chooseImage
         ].images;
@@ -33,6 +32,7 @@ const random = () =>
           original: origin,
           fixed_width_small: preview,
         } = response.data.images;
+
         resolve([origin.gif_url, preview.gif_url]);
       })
       .catch(err => console.log(err));
