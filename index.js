@@ -19,13 +19,14 @@ bot.setInitialState({
 // FIXME: remove lots of ifelse
 const handler = new LineHandler().onEvent(async context => {
   if (context.state.nickname === null) {
+    const { asking } = context.state;
     await ask.nickname(context);
+    if (asking) await action.showCarousel(context);
   } else if (context.state.askingSearchString === true) {
     await send.specialGIF(context);
+    await action.showCarousel(context);
   } else if (context.event.isPostback) {
     await action.whatType(context);
-  } else {
-    await action.showCarousel(context);
   }
 });
 // .onError(async context => {
