@@ -32,6 +32,7 @@ async function showCarousel(context) {
       ],
     },
     {
+      // FIXME: find another gif
       thumbnailImageUrl:
         'https://media.giphy.com/media/5VKbvrjxpVJCM/giphy.gif',
       title: '熱門搜尋',
@@ -68,7 +69,7 @@ async function whatType(context) {
       await send.specialGIF(context);
       break;
     case 'hot':
-      await db.showAllSearch();
+      await db.showAllSearch(context);
       break;
     case 'random':
       await send.randomGIF(context);

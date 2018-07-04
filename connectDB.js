@@ -3,6 +3,8 @@ const { MongoClient } = require('mongodb');
 const username = process.env.MONGO_ACCOUNT;
 const password = process.env.MONGO_PASSWORD;
 const uri = `mongodb+srv://${username}:${password}@cluster0-ypcvv.mongodb.net/test?retryWrites=true`;
+// FIXME: need to change collection name
+const table = `devices`;
 
 // TODO: 要做 error handling
 function insertSearchHistory(context) {
@@ -10,21 +12,19 @@ function insertSearchHistory(context) {
   MongoClient.connect(
     uri,
     (err, client) => {
-      // FIXME: need to change collection name
-      const collection = client.db('test').collection('devices');
+      const collection = client.db('test').collection(table);
       collection.insert({ nickname, keyword }, () => client.close());
     }
   );
 }
 
-function showAllSearch() {
+async function showAllSearch(context) {
   MongoClient.connect(
     uri,
     (err, client) => {
-      // FIXME: need to change collection name
-      const collection = client.db('test').collection('devices');
-      collection.find({}).toArray((err2, docs) => {
-        console.log(docs);
+      const collection = client.db('test').collection(table);
+      collection.find({}).toArray(async (err2, docs) => {
+        await context.sendText(docs);
         client.close();
       });
     }
