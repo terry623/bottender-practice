@@ -1,9 +1,6 @@
 async function keyword(context) {
   if (context.state.askingKeyword) {
-    context.setState({
-      keyword: context.event.text,
-      askingKeyword: false,
-    });
+    context.setState({ keyword: context.event.text });
   } else {
     context.setState({ keyword: null, askingKeyword: true });
     await context.sendText(`${context.state.nickname}，你想搜尋什麼 GIF ?`);

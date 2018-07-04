@@ -26,7 +26,10 @@ async function handleNickname(context) {
 async function handleCommend(context) {
   const { text } = context.event.message;
   if (/^start/i.test(text)) await action.showCarousel(context);
-  else await send.specialGIF(context);
+  else {
+    await context.setState({ keyword: context.event.text });
+    await send.specialGIF(context);
+  }
 }
 
 const handler = new LineHandler()
