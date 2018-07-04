@@ -10,7 +10,8 @@ async function randomGIF(context) {
 
 async function specialGIF(context) {
   const query = await ask.searchString(context);
-  if (query) {
+  console.log('query:', query);
+  if (query !== null) {
     await context.sendText(`Search for ${query}.`);
     const urls = await gif.search(query);
     await context.replyImage(urls[0], urls[1]);

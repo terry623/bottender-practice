@@ -20,10 +20,10 @@ const handler = new LineHandler()
   .onEvent(async context => {
     if (context.state.nickname === null) {
       await ask.nickname(context);
-    } else if (context.event.isPostback) {
-      await action.whatType(context);
     } else if (context.state.askingSearchString === true) {
       await send.specialGIF(context);
+    } else if (context.event.isPostback) {
+      await action.whatType(context);
     } else {
       await context.sendText(`I don't understand.`);
     }
