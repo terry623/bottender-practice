@@ -14,6 +14,7 @@ bot.setInitialState({
   nickname: null,
   askingKeyword: false,
   keyword: null,
+  history: {},
 });
 
 async function handleNickname(context) {
