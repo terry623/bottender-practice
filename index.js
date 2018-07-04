@@ -3,7 +3,6 @@ const { createServer } = require('bottender/express');
 
 const PORT = process.env.PORT || 5000;
 const config = require('./bottender.config');
-const ask = require('./ask');
 const action = require('./action');
 const send = require('./send');
 
@@ -19,7 +18,7 @@ bot.setInitialState({
 // FIXME: remove lots of ifelse
 const handler = new LineHandler().onEvent(async context => {
   if (context.state.nickname === null) {
-    await ask.nickname(context);
+    await send.askNickname(context);
   } else if (context.state.askingSearchString === true) {
     await send.specialGIF(context);
   } else if (context.event.isPostback) {
