@@ -4,7 +4,7 @@ const username = process.env.MONGO_ACCOUNT;
 const password = process.env.MONGO_PASSWORD;
 const uri = `mongodb+srv://${username}:${password}@cluster0-ypcvv.mongodb.net/test?retryWrites=true`;
 // FIXME: need to change collection name
-const table = `temp`;
+const table = `temp2`;
 
 function docsToString(docs) {
   let result = '';
@@ -33,7 +33,8 @@ async function showAllSearch(context) {
     (err, client) => {
       const collection = client.db('test').collection(table);
       collection.find({}).toArray(async (err2, docs) => {
-        if (!docs) {
+        console.log(docs);
+        if (docs !== null) {
           const result = docsToString(docs);
           await context.sendText(result);
         } else {
