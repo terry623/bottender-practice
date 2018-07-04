@@ -7,6 +7,13 @@ function storeSearchHistory(context) {
   db.insertSearchHistory({ nickname, keyword });
 }
 
+storeSearchHistory({
+  state: {
+    nickname: 999,
+    keyword: 666,
+  },
+});
+
 async function urlToReply(urls, context) {
   const [origin, preview] = urls;
   await context.replyImage(origin, preview);
