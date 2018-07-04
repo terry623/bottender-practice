@@ -4,7 +4,7 @@ const username = process.env.MONGO_ACCOUNT;
 const password = process.env.MONGO_PASSWORD;
 const uri = `mongodb+srv://${username}:${password}@cluster0-ypcvv.mongodb.net/test?retryWrites=true`;
 // FIXME: need to change collection name
-const table = `devices`;
+const table = `temp`;
 
 function docsToString(docs) {
   let result = '';
