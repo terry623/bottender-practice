@@ -12,49 +12,48 @@ async function docsToSend(context, docs) {
   console.log(docs);
   let people = docs[0].nickname;
   let result = '';
-  docs.forEach(async element => {
-    const { nickname, keyword } = element;
+
+  for (let i = 0; i < docs.length; i++) {
+    const { nickname, keyword } = docs[i];
     if (people !== nickname) {
-      await context.sendText(result);
-      console.log(result);
-      console.log('---');
+      result += '\n-----\n';
       people = nickname;
-      result = '';
     } else if (result !== '') {
       result += '\n';
     }
     result += nickname.concat(' 搜尋了 ', keyword);
-  });
+  }
   console.log(result);
   await context.sendText(result);
 }
 
-// docsToSend('context', [
+// const data = [
 //   {
-//     nickname: '999',
-//     keyword: '666',
+//     nickname: 'Terry',
+//     keyword: 'Panda',
 //   },
 //   {
-//     nickname: '999',
-//     keyword: '666',
+//     nickname: 'Terry',
+//     keyword: 'Cat',
 //   },
 //   {
-//     nickname: '999',
-//     keyword: '666',
+//     nickname: 'Emma',
+//     keyword: 'Cat',
 //   },
 //   {
-//     nickname: '888',
-//     keyword: '555',
+//     nickname: 'Emma',
+//     keyword: 'Dog',
 //   },
 //   {
-//     nickname: '888',
-//     keyword: '555',
+//     nickname: 'Jimmy',
+//     keyword: 'Cat',
 //   },
 //   {
-//     nickname: '777',
-//     keyword: '444',
+//     nickname: 'Jimmy',
+//     keyword: 'Dog',
 //   },
-// ]);
+// ];
+// docsToSend('context', data);
 
 function insertSearchHistory(context) {
   const { nickname, keyword } = context.state;
