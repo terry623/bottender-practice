@@ -7,7 +7,6 @@ const uri = `mongodb+srv://${username}:${password}@cluster0-ypcvv.mongodb.net/te
 const table = `temp4`;
 
 async function docsToSend(context, docs) {
-  console.log('all docs');
   console.log(docs);
   let people = docs[0].nickname;
   let result = '';
