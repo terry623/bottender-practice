@@ -33,7 +33,7 @@ async function showCarousel(context) {
     },
     {
       thumbnailImageUrl:
-        'https://media.giphy.com/media/LVd2pT7oKapli5HxNa/giphy.gif',
+        'https://media.giphy.com/media/2wh2oUqQWk4ys2R2gl/giphy.gif',
       title: '熱門搜尋',
       text: '看看大家都找什麼',
       actions: [
