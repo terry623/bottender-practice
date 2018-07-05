@@ -4,10 +4,9 @@ const username = process.env.MONGO_ACCOUNT;
 const password = process.env.MONGO_PASSWORD;
 const uri = `mongodb+srv://${username}:${password}@cluster0-ypcvv.mongodb.net/test?retryWrites=true`;
 // FIXME: need to change collection name
-const table = `temp4`;
+const table = `history`;
 
 async function docsToSend(context, docs) {
-  console.log(docs);
   let people = docs[0].nickname;
   let result = '';
 
@@ -20,41 +19,8 @@ async function docsToSend(context, docs) {
     result += nickname.concat(' 搜尋了 ', keyword);
     if (i !== docs.length - 1) result += '\n';
   }
-  console.log(result);
   await context.sendText(result);
 }
-
-// const data = [
-//   {
-//     nickname: 'Terry',
-//     keyword: 'Panda',
-//   },
-//   {
-//     nickname: 'Terry',
-//     keyword: 'Cat',
-//   },
-//   {
-//     nickname: 'Emma',
-//     keyword: 'Cat',
-//   },
-//   {
-//     nickname: 'Emma',
-//     keyword: 'Dog',
-//   },
-//   {
-//     nickname: 'Jimmy',
-//     keyword: 'Cat',
-//   },
-//   {
-//     nickname: 'Jimmy',
-//     keyword: 'Dog',
-//   },
-//   {
-//     nickname: 'ggg',
-//     keyword: 'Cat',
-//   },
-// ];
-// docsToSend('context', data);
 
 function insertSearchHistory(context) {
   const { nickname, keyword } = context.state;
