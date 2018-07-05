@@ -4,17 +4,20 @@ const username = process.env.MONGO_ACCOUNT;
 const password = process.env.MONGO_PASSWORD;
 const uri = `mongodb+srv://${username}:${password}@cluster0-ypcvv.mongodb.net/test?retryWrites=true`;
 // FIXME: need to change collection name
-const table = `temp2`;
+const table = `temp3`;
 
 // FIXME: 人名 + 所有搜尋 = 一則訊息
 async function docsToSend(context, docs) {
+  console.log('all docs');
+  console.log(docs);
   let people = docs[0].nickname;
   let result = '';
   docs.forEach(async element => {
     const { nickname, keyword } = element;
     if (people !== nickname) {
       await context.sendText(result);
-      // console.log(result);
+      console.log(result);
+      console.log('-----');
       people = nickname;
       result = '';
     } else if (result !== '') {
@@ -22,7 +25,7 @@ async function docsToSend(context, docs) {
     }
     result += nickname.concat(' 搜尋了 ', keyword);
   });
-  // console.log(result);
+  console.log(result);
   await context.sendText(result);
 }
 
