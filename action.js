@@ -32,9 +32,8 @@ async function showCarousel(context) {
       ],
     },
     {
-      // FIXME: find another gif
       thumbnailImageUrl:
-        'https://media.giphy.com/media/5VKbvrjxpVJCM/giphy.gif',
+        'https://media.giphy.com/media/LVd2pT7oKapli5HxNa/giphy.gif',
       title: '熱門搜尋',
       text: '看看大家都找什麼',
       actions: [

@@ -38,8 +38,7 @@ const handler = new LineHandler()
     else if (context.event.isPostback) await action.whatType(context);
     else if (context.event.isText) handleCommend(context);
   })
-  .onError(async (context, error) => {
-    console.log(error);
+  .onError(async context => {
     await context.sendText('Handler 發生錯誤');
   });
 

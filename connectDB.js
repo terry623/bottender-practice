@@ -6,18 +6,53 @@ const uri = `mongodb+srv://${username}:${password}@cluster0-ypcvv.mongodb.net/te
 // FIXME: need to change collection name
 const table = `temp2`;
 
-function docsToString(docs) {
+// FIXME: 人名 + 所有搜尋 = 一則訊息
+async function docsToSend(context, docs) {
+  let people = docs[0].nickname;
   let result = '';
-  docs.forEach((element, idx, arr) => {
+  docs.forEach(async element => {
     const { nickname, keyword } = element;
-    // FIXME: 人名 + 所有搜尋 = 一則訊息
+    if (people !== nickname) {
+      await context.sendText(result);
+      // console.log(result);
+      people = nickname;
+      result = '';
+    } else if (result !== '') {
+      result += '\n';
+    }
     result += nickname.concat(' 搜尋了 ', keyword);
-    if (idx !== arr.length - 1) result += '\n';
   });
-  return result;
+  // console.log(result);
+  await context.sendText(result);
 }
 
-// TODO: 要做 error handling
+// docsToSend('context', [
+//   {
+//     nickname: '999',
+//     keyword: '666',
+//   },
+//   {
+//     nickname: '999',
+//     keyword: '666',
+//   },
+//   {
+//     nickname: '999',
+//     keyword: '666',
+//   },
+//   {
+//     nickname: '888',
+//     keyword: '555',
+//   },
+//   {
+//     nickname: '888',
+//     keyword: '555',
+//   },
+//   {
+//     nickname: '777',
+//     keyword: '444',
+//   },
+// ]);
+
 function insertSearchHistory(context) {
   const { nickname, keyword } = context.state;
   MongoClient.connect(
@@ -35,13 +70,8 @@ async function showAllSearch(context) {
     (err, client) => {
       const collection = client.db('test').collection(table);
       collection.find({}).toArray(async (err2, docs) => {
-        console.log(docs);
-        if (docs.length > 0) {
-          const result = docsToString(docs);
-          await context.sendText(result);
-        } else {
-          await context.sendText('目前沒有資料 ><');
-        }
+        if (docs.length > 0) await docsToSend(context, docs);
+        else await context.sendText('目前沒有資料 ><');
         client.close();
       });
     }

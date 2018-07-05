@@ -8,7 +8,6 @@ async function urlToReply(urls, context) {
 }
 
 async function specialGIF(context) {
-  console.log(context.state);
   await ask.keyword(context);
   if (context.state.keyword !== null) {
     db.insertSearchHistory(context);
@@ -24,8 +23,12 @@ async function specialGIF(context) {
 
 async function randomGIF(context) {
   await context.sendText(`${context.state.nickname}，我隨便挑了個 GIF 給你 !`);
-  const urls = await gif.random();
-  await urlToReply(urls, context);
+  try {
+    const urls = await gif.random();
+    await urlToReply(urls, context);
+  } catch (error) {
+    await context.sendText(`找不到相關的 GIF ><`);
+  }
 }
 
 module.exports = { specialGIF, randomGIF };

@@ -24,7 +24,7 @@ const search = query =>
   });
 
 const random = () =>
-  new Promise(resolve => {
+  new Promise((resolve, reject) => {
     client
       .random('gifs', {})
       .then(response => {
@@ -35,7 +35,7 @@ const random = () =>
 
         resolve([origin.gif_url, preview.gif_url]);
       })
-      .catch(err => console.log(err));
+      .catch(err => reject(err));
   });
 
 module.exports = { search, random };
