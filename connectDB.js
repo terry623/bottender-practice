@@ -17,7 +17,7 @@ async function docsToSend(context, docs) {
     if (people !== nickname) {
       await context.sendText(result);
       console.log(result);
-      console.log('-----');
+      console.log('---');
       people = nickname;
       result = '';
     } else if (result !== '') {
