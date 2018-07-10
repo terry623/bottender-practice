@@ -17,7 +17,7 @@ async function showMenu(context) {
 }
 
 async function showCarousel(context) {
-  context.replyCarouselTemplate('this is a carousel template', [
+  await context.replyCarouselTemplate('this is a carousel template', [
     {
       thumbnailImageUrl:
         'https://media.giphy.com/media/3o7bu1jl4jMGgWDUhq/giphy.gif',
