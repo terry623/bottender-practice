@@ -2,6 +2,7 @@ const GphApiClient = require('giphy-js-sdk-core');
 
 const client = GphApiClient('WCyzh8Jtc3RNEOwPPELQy5QGhuHUGpwJ');
 
+// FIXME: fix return new promise
 const search = query =>
   new Promise((resolve, reject) => {
     const photoLimit = 20;
